@@ -1,0 +1,300 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\HP\\source\\repos\\TasinmazProjesiAPI\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{B4BD3D4C-1051-419E-97DC-3CA9B867DB10}|TasinmazProjesiAPI\\TasinmazProjesiAPI.csproj|c:\\users\\hp\\source\\repos\\tasinmazprojesiapi\\tasinmazprojesiapi\\controllers\\illercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4BD3D4C-1051-419E-97DC-3CA9B867DB10}|TasinmazProjesiAPI\\TasinmazProjesiAPI.csproj|solutionrelative:tasinmazprojesiapi\\controllers\\illercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4BD3D4C-1051-419E-97DC-3CA9B867DB10}|TasinmazProjesiAPI\\TasinmazProjesiAPI.csproj|c:\\users\\hp\\source\\repos\\tasinmazprojesiapi\\tasinmazprojesiapi\\business\\concrete\\ilservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4BD3D4C-1051-419E-97DC-3CA9B867DB10}|TasinmazProjesiAPI\\TasinmazProjesiAPI.csproj|solutionrelative:tasinmazprojesiapi\\business\\concrete\\ilservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4BD3D4C-1051-419E-97DC-3CA9B867DB10}|TasinmazProjesiAPI\\TasinmazProjesiAPI.csproj|c:\\users\\hp\\source\\repos\\tasinmazprojesiapi\\tasinmazprojesiapi\\business\\abstract\\iilceservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4BD3D4C-1051-419E-97DC-3CA9B867DB10}|TasinmazProjesiAPI\\TasinmazProjesiAPI.csproj|solutionrelative:tasinmazprojesiapi\\business\\abstract\\iilceservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4BD3D4C-1051-419E-97DC-3CA9B867DB10}|TasinmazProjesiAPI\\TasinmazProjesiAPI.csproj|c:\\users\\hp\\source\\repos\\tasinmazprojesiapi\\tasinmazprojesiapi\\entitites\\concrete\\il.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4BD3D4C-1051-419E-97DC-3CA9B867DB10}|TasinmazProjesiAPI\\TasinmazProjesiAPI.csproj|solutionrelative:tasinmazprojesiapi\\entitites\\concrete\\il.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4BD3D4C-1051-419E-97DC-3CA9B867DB10}|TasinmazProjesiAPI\\TasinmazProjesiAPI.csproj|c:\\users\\hp\\source\\repos\\tasinmazprojesiapi\\tasinmazprojesiapi\\entitites\\concrete\\ilce.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4BD3D4C-1051-419E-97DC-3CA9B867DB10}|TasinmazProjesiAPI\\TasinmazProjesiAPI.csproj|solutionrelative:tasinmazprojesiapi\\entitites\\concrete\\ilce.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4BD3D4C-1051-419E-97DC-3CA9B867DB10}|TasinmazProjesiAPI\\TasinmazProjesiAPI.csproj|c:\\users\\hp\\source\\repos\\tasinmazprojesiapi\\tasinmazprojesiapi\\entitites\\concrete\\mahalle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4BD3D4C-1051-419E-97DC-3CA9B867DB10}|TasinmazProjesiAPI\\TasinmazProjesiAPI.csproj|solutionrelative:tasinmazprojesiapi\\entitites\\concrete\\mahalle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4BD3D4C-1051-419E-97DC-3CA9B867DB10}|TasinmazProjesiAPI\\TasinmazProjesiAPI.csproj|c:\\users\\hp\\source\\repos\\tasinmazprojesiapi\\tasinmazprojesiapi\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4BD3D4C-1051-419E-97DC-3CA9B867DB10}|TasinmazProjesiAPI\\TasinmazProjesiAPI.csproj|solutionrelative:tasinmazprojesiapi\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4BD3D4C-1051-419E-97DC-3CA9B867DB10}|TasinmazProjesiAPI\\TasinmazProjesiAPI.csproj|c:\\users\\hp\\source\\repos\\tasinmazprojesiapi\\tasinmazprojesiapi\\entitites\\concrete\\tasinmaz.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4BD3D4C-1051-419E-97DC-3CA9B867DB10}|TasinmazProjesiAPI\\TasinmazProjesiAPI.csproj|solutionrelative:tasinmazprojesiapi\\entitites\\concrete\\tasinmaz.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4BD3D4C-1051-419E-97DC-3CA9B867DB10}|TasinmazProjesiAPI\\TasinmazProjesiAPI.csproj|c:\\users\\hp\\source\\repos\\tasinmazprojesiapi\\tasinmazprojesiapi\\controllers\\ilcelercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4BD3D4C-1051-419E-97DC-3CA9B867DB10}|TasinmazProjesiAPI\\TasinmazProjesiAPI.csproj|solutionrelative:tasinmazprojesiapi\\controllers\\ilcelercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4BD3D4C-1051-419E-97DC-3CA9B867DB10}|TasinmazProjesiAPI\\TasinmazProjesiAPI.csproj|c:\\users\\hp\\source\\repos\\tasinmazprojesiapi\\tasinmazprojesiapi\\business\\concrete\\ilceservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4BD3D4C-1051-419E-97DC-3CA9B867DB10}|TasinmazProjesiAPI\\TasinmazProjesiAPI.csproj|solutionrelative:tasinmazprojesiapi\\business\\concrete\\ilceservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4BD3D4C-1051-419E-97DC-3CA9B867DB10}|TasinmazProjesiAPI\\TasinmazProjesiAPI.csproj|c:\\users\\hp\\source\\repos\\tasinmazprojesiapi\\tasinmazprojesiapi\\controllers\\mahallelercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4BD3D4C-1051-419E-97DC-3CA9B867DB10}|TasinmazProjesiAPI\\TasinmazProjesiAPI.csproj|solutionrelative:tasinmazprojesiapi\\controllers\\mahallelercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4BD3D4C-1051-419E-97DC-3CA9B867DB10}|TasinmazProjesiAPI\\TasinmazProjesiAPI.csproj|c:\\users\\hp\\source\\repos\\tasinmazprojesiapi\\tasinmazprojesiapi\\business\\concrete\\mahalleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4BD3D4C-1051-419E-97DC-3CA9B867DB10}|TasinmazProjesiAPI\\TasinmazProjesiAPI.csproj|solutionrelative:tasinmazprojesiapi\\business\\concrete\\mahalleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4BD3D4C-1051-419E-97DC-3CA9B867DB10}|TasinmazProjesiAPI\\TasinmazProjesiAPI.csproj|c:\\users\\hp\\source\\repos\\tasinmazprojesiapi\\tasinmazprojesiapi\\business\\abstract\\imahalleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4BD3D4C-1051-419E-97DC-3CA9B867DB10}|TasinmazProjesiAPI\\TasinmazProjesiAPI.csproj|solutionrelative:tasinmazprojesiapi\\business\\abstract\\imahalleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4BD3D4C-1051-419E-97DC-3CA9B867DB10}|TasinmazProjesiAPI\\TasinmazProjesiAPI.csproj|c:\\users\\hp\\source\\repos\\tasinmazprojesiapi\\tasinmazprojesiapi\\controllers\\tasinmazcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4BD3D4C-1051-419E-97DC-3CA9B867DB10}|TasinmazProjesiAPI\\TasinmazProjesiAPI.csproj|solutionrelative:tasinmazprojesiapi\\controllers\\tasinmazcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4BD3D4C-1051-419E-97DC-3CA9B867DB10}|TasinmazProjesiAPI\\TasinmazProjesiAPI.csproj|c:\\users\\hp\\source\\repos\\tasinmazprojesiapi\\tasinmazprojesiapi\\business\\concrete\\tasinmazservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4BD3D4C-1051-419E-97DC-3CA9B867DB10}|TasinmazProjesiAPI\\TasinmazProjesiAPI.csproj|solutionrelative:tasinmazprojesiapi\\business\\concrete\\tasinmazservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4BD3D4C-1051-419E-97DC-3CA9B867DB10}|TasinmazProjesiAPI\\TasinmazProjesiAPI.csproj|c:\\users\\hp\\source\\repos\\tasinmazprojesiapi\\tasinmazprojesiapi\\business\\abstract\\itasinmazservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4BD3D4C-1051-419E-97DC-3CA9B867DB10}|TasinmazProjesiAPI\\TasinmazProjesiAPI.csproj|solutionrelative:tasinmazprojesiapi\\business\\abstract\\itasinmazservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4BD3D4C-1051-419E-97DC-3CA9B867DB10}|TasinmazProjesiAPI\\TasinmazProjesiAPI.csproj|c:\\users\\hp\\source\\repos\\tasinmazprojesiapi\\tasinmazprojesiapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4BD3D4C-1051-419E-97DC-3CA9B867DB10}|TasinmazProjesiAPI\\TasinmazProjesiAPI.csproj|solutionrelative:tasinmazprojesiapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Mahalle.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\source\\repos\\TasinmazProjesiAPI\\TasinmazProjesiAPI\\Entitites\\Concrete\\Mahalle.cs",
+              "RelativeDocumentMoniker": "TasinmazProjesiAPI\\Entitites\\Concrete\\Mahalle.cs",
+              "ToolTip": "C:\\Users\\HP\\source\\repos\\TasinmazProjesiAPI\\TasinmazProjesiAPI\\Entitites\\Concrete\\Mahalle.cs",
+              "RelativeToolTip": "TasinmazProjesiAPI\\Entitites\\Concrete\\Mahalle.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAgwAYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-07T19:14:43.481Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Ilce.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\source\\repos\\TasinmazProjesiAPI\\TasinmazProjesiAPI\\Entitites\\Concrete\\Ilce.cs",
+              "RelativeDocumentMoniker": "TasinmazProjesiAPI\\Entitites\\Concrete\\Ilce.cs",
+              "ToolTip": "C:\\Users\\HP\\source\\repos\\TasinmazProjesiAPI\\TasinmazProjesiAPI\\Entitites\\Concrete\\Ilce.cs",
+              "RelativeToolTip": "TasinmazProjesiAPI\\Entitites\\Concrete\\Ilce.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-07T19:14:39.305Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Il.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\source\\repos\\TasinmazProjesiAPI\\TasinmazProjesiAPI\\Entitites\\Concrete\\Il.cs",
+              "RelativeDocumentMoniker": "TasinmazProjesiAPI\\Entitites\\Concrete\\Il.cs",
+              "ToolTip": "C:\\Users\\HP\\source\\repos\\TasinmazProjesiAPI\\TasinmazProjesiAPI\\Entitites\\Concrete\\Il.cs",
+              "RelativeToolTip": "TasinmazProjesiAPI\\Entitites\\Concrete\\Il.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-07T19:14:20.35Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "IIlceService.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\source\\repos\\TasinmazProjesiAPI\\TasinmazProjesiAPI\\Business\\Abstract\\IIlceService.cs",
+              "RelativeDocumentMoniker": "TasinmazProjesiAPI\\Business\\Abstract\\IIlceService.cs",
+              "ToolTip": "C:\\Users\\HP\\source\\repos\\TasinmazProjesiAPI\\TasinmazProjesiAPI\\Business\\Abstract\\IIlceService.cs",
+              "RelativeToolTip": "TasinmazProjesiAPI\\Business\\Abstract\\IIlceService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-07T19:13:24.653Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "IlService.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\source\\repos\\TasinmazProjesiAPI\\TasinmazProjesiAPI\\Business\\Concrete\\IlService.cs",
+              "RelativeDocumentMoniker": "TasinmazProjesiAPI\\Business\\Concrete\\IlService.cs",
+              "ToolTip": "C:\\Users\\HP\\source\\repos\\TasinmazProjesiAPI\\TasinmazProjesiAPI\\Business\\Concrete\\IlService.cs",
+              "RelativeToolTip": "TasinmazProjesiAPI\\Business\\Concrete\\IlService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-07T15:13:49.958Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "IllerController.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\source\\repos\\TasinmazProjesiAPI\\TasinmazProjesiAPI\\Controllers\\IllerController.cs",
+              "RelativeDocumentMoniker": "TasinmazProjesiAPI\\Controllers\\IllerController.cs",
+              "ToolTip": "C:\\Users\\HP\\source\\repos\\TasinmazProjesiAPI\\TasinmazProjesiAPI\\Controllers\\IllerController.cs",
+              "RelativeToolTip": "TasinmazProjesiAPI\\Controllers\\IllerController.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAgwB4AAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-07T15:13:33.925Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "ITasinmazService.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\source\\repos\\TasinmazProjesiAPI\\TasinmazProjesiAPI\\Business\\Abstract\\ITasinmazService.cs",
+              "RelativeDocumentMoniker": "TasinmazProjesiAPI\\Business\\Abstract\\ITasinmazService.cs",
+              "ToolTip": "C:\\Users\\HP\\source\\repos\\TasinmazProjesiAPI\\TasinmazProjesiAPI\\Business\\Abstract\\ITasinmazService.cs",
+              "RelativeToolTip": "TasinmazProjesiAPI\\Business\\Abstract\\ITasinmazService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAsAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-07T12:33:58.158Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "IMahalleService.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\source\\repos\\TasinmazProjesiAPI\\TasinmazProjesiAPI\\Business\\Abstract\\IMahalleService.cs",
+              "RelativeDocumentMoniker": "TasinmazProjesiAPI\\Business\\Abstract\\IMahalleService.cs",
+              "ToolTip": "C:\\Users\\HP\\source\\repos\\TasinmazProjesiAPI\\TasinmazProjesiAPI\\Business\\Abstract\\IMahalleService.cs",
+              "RelativeToolTip": "TasinmazProjesiAPI\\Business\\Abstract\\IMahalleService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-07T13:27:00.679Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Startup.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\source\\repos\\TasinmazProjesiAPI\\TasinmazProjesiAPI\\Startup.cs",
+              "RelativeDocumentMoniker": "TasinmazProjesiAPI\\Startup.cs",
+              "ToolTip": "C:\\Users\\HP\\source\\repos\\TasinmazProjesiAPI\\TasinmazProjesiAPI\\Startup.cs",
+              "RelativeToolTip": "TasinmazProjesiAPI\\Startup.cs",
+              "ViewState": "AgIAAF8AAAAAAAAAAAAAAFEAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-07T11:59:11.002Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Tasinmaz.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\source\\repos\\TasinmazProjesiAPI\\TasinmazProjesiAPI\\Entitites\\Concrete\\Tasinmaz.cs",
+              "RelativeDocumentMoniker": "TasinmazProjesiAPI\\Entitites\\Concrete\\Tasinmaz.cs",
+              "ToolTip": "C:\\Users\\HP\\source\\repos\\TasinmazProjesiAPI\\TasinmazProjesiAPI\\Entitites\\Concrete\\Tasinmaz.cs",
+              "RelativeToolTip": "TasinmazProjesiAPI\\Entitites\\Concrete\\Tasinmaz.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAQwAQAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-07T19:14:45.556Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "TasinmazService.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\source\\repos\\TasinmazProjesiAPI\\TasinmazProjesiAPI\\Business\\Concrete\\TasinmazService.cs",
+              "RelativeDocumentMoniker": "TasinmazProjesiAPI\\Business\\Concrete\\TasinmazService.cs",
+              "ToolTip": "C:\\Users\\HP\\source\\repos\\TasinmazProjesiAPI\\TasinmazProjesiAPI\\Business\\Concrete\\TasinmazService.cs",
+              "RelativeToolTip": "TasinmazProjesiAPI\\Business\\Concrete\\TasinmazService.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAA1wCMAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-07T12:41:29.912Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "MahalleService.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\source\\repos\\TasinmazProjesiAPI\\TasinmazProjesiAPI\\Business\\Concrete\\MahalleService.cs",
+              "RelativeDocumentMoniker": "TasinmazProjesiAPI\\Business\\Concrete\\MahalleService.cs",
+              "ToolTip": "C:\\Users\\HP\\source\\repos\\TasinmazProjesiAPI\\TasinmazProjesiAPI\\Business\\Concrete\\MahalleService.cs",
+              "RelativeToolTip": "TasinmazProjesiAPI\\Business\\Concrete\\MahalleService.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAowBYAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-07T12:41:03.783Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "IlceService.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\source\\repos\\TasinmazProjesiAPI\\TasinmazProjesiAPI\\Business\\Concrete\\IlceService.cs",
+              "RelativeDocumentMoniker": "TasinmazProjesiAPI\\Business\\Concrete\\IlceService.cs",
+              "ToolTip": "C:\\Users\\HP\\source\\repos\\TasinmazProjesiAPI\\TasinmazProjesiAPI\\Business\\Concrete\\IlceService.cs",
+              "RelativeToolTip": "TasinmazProjesiAPI\\Business\\Concrete\\IlceService.cs",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAAwD0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-07T12:27:29.698Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "TasinmazController.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\source\\repos\\TasinmazProjesiAPI\\TasinmazProjesiAPI\\Controllers\\TasinmazController.cs",
+              "RelativeDocumentMoniker": "TasinmazProjesiAPI\\Controllers\\TasinmazController.cs",
+              "ToolTip": "C:\\Users\\HP\\source\\repos\\TasinmazProjesiAPI\\TasinmazProjesiAPI\\Controllers\\TasinmazController.cs",
+              "RelativeToolTip": "TasinmazProjesiAPI\\Controllers\\TasinmazController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADAAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-07T10:46:10.059Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "MahallelerController.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\source\\repos\\TasinmazProjesiAPI\\TasinmazProjesiAPI\\Controllers\\MahallelerController.cs",
+              "RelativeDocumentMoniker": "TasinmazProjesiAPI\\Controllers\\MahallelerController.cs",
+              "ToolTip": "C:\\Users\\HP\\source\\repos\\TasinmazProjesiAPI\\TasinmazProjesiAPI\\Controllers\\MahallelerController.cs",
+              "RelativeToolTip": "TasinmazProjesiAPI\\Controllers\\MahallelerController.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAACQAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-07T10:44:24.119Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\source\\repos\\TasinmazProjesiAPI\\TasinmazProjesiAPI\\Program.cs",
+              "RelativeDocumentMoniker": "TasinmazProjesiAPI\\Program.cs",
+              "ToolTip": "C:\\Users\\HP\\source\\repos\\TasinmazProjesiAPI\\TasinmazProjesiAPI\\Program.cs",
+              "RelativeToolTip": "TasinmazProjesiAPI\\Program.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAswBMAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-07T09:46:20.307Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "IlcelerController.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\source\\repos\\TasinmazProjesiAPI\\TasinmazProjesiAPI\\Controllers\\IlcelerController.cs",
+              "RelativeDocumentMoniker": "TasinmazProjesiAPI\\Controllers\\IlcelerController.cs",
+              "ToolTip": "C:\\Users\\HP\\source\\repos\\TasinmazProjesiAPI\\TasinmazProjesiAPI\\Controllers\\IlcelerController.cs",
+              "RelativeToolTip": "TasinmazProjesiAPI\\Controllers\\IlcelerController.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAAYwDYAAABAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-07T10:43:19.746Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
