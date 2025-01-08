@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "MJTIqR+348U=",
+  "dgSpecHash": "V/d3STK+F8o=",
   "success": true,
-  "projectFilePath": "C:\\Users\\HP\\source\\repos\\TasinmazProjesiAPI\\TasinmazProjesiAPI\\TasinmazProjesiAPI.csproj",
+  "projectFilePath": "C:\\Users\\HP\\Desktop\\repo\\TasinmazProject\\TasinmazProjesiAPI\\TasinmazProjesiAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\HP\\.nuget\\packages\\automapper\\7.0.1\\automapper.7.0.1.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\5.0.1\\automapper.extensions.microsoft.dependencyinjection.5.0.1.nupkg.sha512",

@@ -37,10 +37,19 @@ namespace TasinmazProjesiAPI
 
             // Dependency Injection: Servislerin kaydý
             services.AddScoped<IIlService, IlService>();
-            services.AddScoped<IIlceService, IlceService>(); // Düzeltildi
+            services.AddScoped<IIlceService, IlceService>(); 
             services.AddScoped<IMahalleService, MahalleService>();
             services.AddScoped<ITasinmazService, TasinmazService>();
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAngular", builder =>
+                {
+                    builder.WithOrigins("http://localhost:44300") // Angular uygulamasýnýn adresi
+                           .AllowAnyHeader()
+                           .AllowAnyMethod();
+                });
+            });
             // Swagger Ayarlarý
             services.AddSwaggerGen(c =>
             {
@@ -68,7 +77,7 @@ namespace TasinmazProjesiAPI
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
-
+            app.UseCors("AllowAngular");
             // Swagger'ý aktifleþtir
             app.UseSwagger();
 

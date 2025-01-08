@@ -7,6 +7,8 @@ using TasinmazProjesiAPI.Entitites.Concrete;
 
 namespace TasinmazProjesiAPI.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class IllerController : ControllerBase
     {
         private readonly IIlService _ilService;

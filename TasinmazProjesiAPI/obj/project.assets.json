@@ -2101,11 +2101,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\HP\\source\\repos\\TasinmazProjesiAPI\\TasinmazProjesiAPI\\TasinmazProjesiAPI.csproj",
+      "projectUniqueName": "C:\\Users\\HP\\Desktop\\repo\\TasinmazProject\\TasinmazProjesiAPI\\TasinmazProjesiAPI.csproj",
       "projectName": "TasinmazProjesiAPI",
-      "projectPath": "C:\\Users\\HP\\source\\repos\\TasinmazProjesiAPI\\TasinmazProjesiAPI\\TasinmazProjesiAPI.csproj",
+      "projectPath": "C:\\Users\\HP\\Desktop\\repo\\TasinmazProject\\TasinmazProjesiAPI\\TasinmazProjesiAPI.csproj",
       "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\HP\\source\\repos\\TasinmazProjesiAPI\\TasinmazProjesiAPI\\obj\\",
+      "outputPath": "C:\\Users\\HP\\Desktop\\repo\\TasinmazProject\\TasinmazProjesiAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
