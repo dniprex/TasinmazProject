@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using TasinmazProjesiAPI.Business.Abstract;
@@ -49,7 +50,6 @@ namespace TasinmazProjesiAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateTasinmaz(int id, Tasinmaz tasinmaz)
         {
-            if (id != tasinmaz.Id) return BadRequest("ID mismatch.");
             await _tasinmazService.UpdateTasinmazAsync(tasinmaz);
             return NoContent();
         }

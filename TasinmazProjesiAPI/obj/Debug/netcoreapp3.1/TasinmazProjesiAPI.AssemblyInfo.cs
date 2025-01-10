@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TasinmazProjesiAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+17b19fc2795a3e430c7c255811fb682a1a92ffe5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2ef3bb23283f73fe55b83f8c5b539159add976bd")]
 [assembly: System.Reflection.AssemblyProductAttribute("TasinmazProjesiAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TasinmazProjesiAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
