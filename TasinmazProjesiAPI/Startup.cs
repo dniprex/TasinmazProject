@@ -45,7 +45,7 @@ namespace TasinmazProjesiAPI
             {
                 options.AddPolicy("AllowAngular", builder =>
                 {
-                    builder.WithOrigins("http://localhost:44300") // Angular uygulamasýnýn adresi
+                    builder.WithOrigins("http://localhost:44300") 
                            .AllowAnyHeader()
                            .AllowAnyMethod();
                 });

@@ -24,12 +24,27 @@ namespace TasinmazProjesiAPI.Controllers
         public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {
             var user = await _context.Users.SingleOrDefaultAsync(u => u.Email == request.Email);
-            if (user == null || user.Password != PasswordHelper.HashPassword(request.Password))
+            if (user == null)
                 return Unauthorized("Invalid credentials");
 
-            // Token oluşturma simülasyonu
+            Console.WriteLine($"Girişte hash'lenmiş şifre: {PasswordHelper.HashPassword(request.Password)}");
+            Console.WriteLine($"Veritabanındaki şifre: {user.Password}");
+
+            if (user.Password != PasswordHelper.HashPassword(request.Password))
+                return Unauthorized("Invalid credentials");
+
             var token = "Generated_JWT_Token";
             return Ok(new { Token = token });
+        }
+
+        [HttpGet("users")]
+        public async Task<IActionResult> GetAllUsers()
+        {
+            var users = await _context.Users
+                .Select(u => new { u.Id, u.Email, u.Password }) 
+                .ToListAsync();
+
+            return Ok(users);
         }
 
         [HttpPost("register")]
