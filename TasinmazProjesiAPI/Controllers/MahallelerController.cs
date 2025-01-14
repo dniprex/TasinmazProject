@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using TasinmazProjesiAPI.Business.Abstract;
 using TasinmazProjesiAPI.Entitites.Concrete;
@@ -21,6 +22,8 @@ namespace TasinmazProjesiAPI.Controllers
         public async Task<ActionResult<IEnumerable<Mahalle>>> GetAllMahalleler()
         {
             var mahalleler = await _mahalleService.GetAllMahallelerAsync();
+            if (mahalleler == null || !mahalleler.Any())
+                return NotFound("No neighborhoods found.");
             return Ok(mahalleler);
         }
 
@@ -28,7 +31,8 @@ namespace TasinmazProjesiAPI.Controllers
         public async Task<ActionResult<Mahalle>> GetMahalleById(int id)
         {
             var mahalle = await _mahalleService.GetMahalleByIdAsync(id);
-            if (mahalle == null) return NotFound($"Mahalle with ID {id} not found.");
+            if (mahalle == null)
+                return NotFound($"Neighborhood with ID {id} not found.");
             return Ok(mahalle);
         }
 
@@ -36,12 +40,16 @@ namespace TasinmazProjesiAPI.Controllers
         public async Task<ActionResult<IEnumerable<Mahalle>>> GetMahallelerByIlceId(int ilceId)
         {
             var mahalleler = await _mahalleService.GetMahallelerByIlceIdAsync(ilceId);
+            if (mahalleler == null || !mahalleler.Any())
+                return NotFound($"No neighborhoods found for district ID {ilceId}.");
             return Ok(mahalleler);
         }
 
         [HttpPost]
         public async Task<IActionResult> AddMahalle(Mahalle mahalle)
         {
+            if (mahalle == null)
+                return BadRequest("Neighborhood data cannot be null.");
             await _mahalleService.AddMahalleAsync(mahalle);
             return CreatedAtAction(nameof(GetMahalleById), new { id = mahalle.Id }, mahalle);
         }
@@ -49,7 +57,13 @@ namespace TasinmazProjesiAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateMahalle(int id, Mahalle mahalle)
         {
-            if (id != mahalle.Id) return BadRequest("ID mismatch.");
+            if (mahalle == null)
+                return BadRequest("Neighborhood data cannot be null.");
+            if (id != mahalle.Id)
+                return BadRequest("ID mismatch.");
+            var existingMahalle = await _mahalleService.GetMahalleByIdAsync(id);
+            if (existingMahalle == null)
+                return NotFound($"Neighborhood with ID {id} not found.");
             await _mahalleService.UpdateMahalleAsync(mahalle);
             return NoContent();
         }
@@ -57,6 +71,9 @@ namespace TasinmazProjesiAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteMahalle(int id)
         {
+            var existingMahalle = await _mahalleService.GetMahalleByIdAsync(id);
+            if (existingMahalle == null)
+                return NotFound($"Neighborhood with ID {id} not found.");
             await _mahalleService.DeleteMahalleAsync(id);
             return NoContent();
         }

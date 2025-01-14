@@ -1,8 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using TasinmazProjesiAPI.Business.Abstract;
+using TasinmazProjesiAPI.DataAccess;
 using TasinmazProjesiAPI.Entitites.Concrete;
 
 namespace TasinmazProjesiAPI.Controllers
@@ -13,6 +17,7 @@ namespace TasinmazProjesiAPI.Controllers
     {
         private readonly ITasinmazService _tasinmazService;
 
+      
         public TasinmazlarController(ITasinmazService tasinmazService)
         {
             _tasinmazService = tasinmazService;
@@ -32,6 +37,7 @@ namespace TasinmazProjesiAPI.Controllers
             if (tasinmaz == null) return NotFound($"Tasinmaz with ID {id} not found.");
             return Ok(tasinmaz);
         }
+      
 
         [HttpGet("by-mahalle/{mahalleId}")]
         public async Task<ActionResult<IEnumerable<Tasinmaz>>> GetTasinmazlarByMahalleId(int mahalleId)
@@ -48,11 +54,27 @@ namespace TasinmazProjesiAPI.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateTasinmaz(int id, Tasinmaz tasinmaz)
+        public async Task<IActionResult> UpdateTasinmaz(int id, [FromBody] Tasinmaz tasinmaz)
         {
+            Console.WriteLine("Gelen JSON: " + JsonConvert.SerializeObject(tasinmaz));
+
+            if (!ModelState.IsValid)
+            {
+                var errors = ModelState.Values.SelectMany(v => v.Errors)
+                                              .Select(e => e.ErrorMessage)
+                                              .ToList();
+                Console.WriteLine("Doğrulama Hataları: " + string.Join(", ", errors));
+                return BadRequest(new { Errors = errors });
+            }
+
+            // Güncelleme işlemleri
             await _tasinmazService.UpdateTasinmazAsync(tasinmaz);
             return NoContent();
         }
+
+
+
+
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTasinmaz(int id)

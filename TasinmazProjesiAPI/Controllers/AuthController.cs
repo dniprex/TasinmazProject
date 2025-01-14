@@ -6,6 +6,11 @@ using TasinmazProjesiAPI.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using TasinmazProjesiAPI.Entitites.Concrete;
 using System.Linq;
+using Microsoft.IdentityModel.Tokens;
+using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace TasinmazProjesiAPI.Controllers
 {
@@ -27,16 +32,46 @@ namespace TasinmazProjesiAPI.Controllers
             if (user == null)
                 return Unauthorized("Invalid credentials");
 
-            Console.WriteLine($"Girişte hash'lenmiş şifre: {PasswordHelper.HashPassword(request.Password)}");
-            Console.WriteLine($"Veritabanındaki şifre: {user.Password}");
-
-            if (user.Password != request.Password)
+            var hashedPassword = PasswordHelper.HashPassword(request.Password); 
+            if (user.Password != hashedPassword)
                 return Unauthorized("Invalid credentials");
 
+            var token = GenerateJwtToken(user);
 
-            var token = "Generated_JWT_Token";
             return Ok(new { Token = token });
         }
+        private string GenerateJwtToken(User user)
+        {
+            var claims = new List<Claim>
+    {
+        new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+        new Claim(ClaimTypes.Email, user.Email),
+        new Claim(ClaimTypes.Role, user.UserRole)
+    };
+
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("MySuperSecretKey123"));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(claims),
+                Expires = DateTime.UtcNow.AddHours(1),
+                SigningCredentials = creds
+            };
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+            try
+            {
+                var token = tokenHandler.CreateToken(tokenDescriptor);
+                return tokenHandler.WriteToken(token);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Token Oluşturma Hatası: " + ex.Message);
+                throw;
+            }
+        }
+
         [HttpDelete("users/{id}")]
         public async Task<IActionResult> DeleteUser(int id)
         {

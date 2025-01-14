@@ -22,7 +22,8 @@ namespace TasinmazProjesiAPI.Controllers
         public async Task<ActionResult<IEnumerable<Ilce>>> GetAllIlceler()
         {
             var ilceler = await _ilceService.GetAllIlcelerAsync();
-            if (ilceler == null) return NotFound("No districts found.");
+            if (ilceler == null || !ilceler.Any())
+                return NotFound("No districts found.");
             return Ok(ilceler);
         }
 
@@ -30,7 +31,8 @@ namespace TasinmazProjesiAPI.Controllers
         public async Task<ActionResult<Ilce>> GetIlceById(int id)
         {
             var ilce = await _ilceService.GetIlceByIdAsync(id);
-            if (ilce == null) return NotFound($"District with ID {id} not found.");
+            if (ilce == null)
+                return NotFound($"District with ID {id} not found.");
             return Ok(ilce);
         }
 
@@ -46,7 +48,8 @@ namespace TasinmazProjesiAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> AddIlce(Ilce ilce)
         {
-            if (ilce == null) return BadRequest("District data cannot be null.");
+            if (ilce == null)
+                return BadRequest("District data cannot be null.");
             await _ilceService.AddIlceAsync(ilce);
             return CreatedAtAction(nameof(GetIlceById), new { id = ilce.Id }, ilce);
         }
@@ -54,10 +57,13 @@ namespace TasinmazProjesiAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateIlce(int id, Ilce ilce)
         {
-            if (ilce == null) return BadRequest("District data cannot be null.");
-            if (id != ilce.Id) return BadRequest("ID mismatch.");
+            if (ilce == null)
+                return BadRequest("District data cannot be null.");
+            if (id != ilce.Id)
+                return BadRequest("ID mismatch.");
             var existingIlce = await _ilceService.GetIlceByIdAsync(id);
-            if (existingIlce == null) return NotFound($"District with ID {id} not found.");
+            if (existingIlce == null)
+                return NotFound($"District with ID {id} not found.");
             await _ilceService.UpdateIlceAsync(ilce);
             return NoContent();
         }
@@ -66,7 +72,8 @@ namespace TasinmazProjesiAPI.Controllers
         public async Task<IActionResult> DeleteIlce(int id)
         {
             var existingIlce = await _ilceService.GetIlceByIdAsync(id);
-            if (existingIlce == null) return NotFound($"District with ID {id} not found.");
+            if (existingIlce == null)
+                return NotFound($"District with ID {id} not found.");
             await _ilceService.DeleteIlceAsync(id);
             return NoContent();
         }
