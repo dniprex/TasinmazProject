@@ -13,6 +13,7 @@ namespace TasinmazProjesiAPI.DataAccess
         public DbSet<Mahalle> mahalleler { get; set; }
         public DbSet<Tasinmaz> tasinmazlar { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Log> Logs { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Tasinmaz>().ToTable("tasinmazlar");
@@ -20,6 +21,7 @@ namespace TasinmazProjesiAPI.DataAccess
             modelBuilder.Entity<Ilce>().ToTable("ilceler");
             modelBuilder.Entity<Mahalle>().ToTable("mahalleler");
             modelBuilder.Entity<User>().ToTable("Users");
+            modelBuilder.Entity<Log>().ToTable("Logs");
         }
 
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

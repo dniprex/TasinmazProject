@@ -1,41 +1,79 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using TasinmazProjesiAPI.DataAccess;
 using TasinmazProjesiAPI.Dtos;
+using TasinmazProjesiAPI.Entitites.Concrete;
 
 namespace TasinmazProjesiAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class LogsController //: ControllerBase
+    public class LogsController : ControllerBase
     {
-        //private readonly ILogService _logService;
+        private readonly ApplicationDbContext _context;
 
-//public LogController(ILogService logService)
-//{
-//    _logService = logService;
-//}
+        public LogsController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
 
-//[HttpGet]
-//public async Task<IActionResult> GetLogs([FromQuery] LogFilterDto filterDto)
-//{
-//    var logs = await _logService.GetFilteredLogsAsync(filterDto);
-//    return Ok(logs);
-//}
+        [HttpGet]
+        public async Task<IActionResult> GetLogs([FromQuery] string filter)
+        {
+            var logs = await _context.Logs
+                .Where(log => string.IsNullOrEmpty(filter) || log.Aciklama.Contains(filter))
+                .Select(log => new
+                {
+                    log.UserId,
+                    log.UserMail,
+                    log.Durum,
+                    log.IslemTip,
+                    log.Aciklama,
+                    log.TarihSaat
+                }) 
+                .ToListAsync();
 
-//[HttpGet("export")]
-//public async Task<IActionResult> ExportLogs([FromQuery] LogFilterDto filterDto)
-//{
-//    var fileContent = await _logService.ExportLogsToExcel(filterDto);
-//    return File(fileContent, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Logs.xlsx");
-//}
+            return Ok(logs);
+        }
 
-/*AuthService
-Kullanıcı giriş, şifreleme ve JWT oluşturma işlemleri bu servis ile yapılır.
+        [HttpPost]
+        public async Task<IActionResult> AddLog([FromBody] LogDto log)
+        {
+            if (log == null)
+                return BadRequest(new { Message = "Log verisi boş olamaz." });
 
-TasinmazService
-Taşınmazların CRUD işlemlerini gerçekleştirir.
+            if (log.UserId <= 0)
+                return BadRequest(new { Message = "Geçerli bir UserId sağlanmalıdır." });
 
-LogService
-Log kayıtlarını tutar, filtreleme ve Excel'e aktarım sağlar.*/
-}
+            if (string.IsNullOrEmpty(log.Durum))
+                return BadRequest(new { Message = "Durum alanı zorunludur." });
+
+            if (string.IsNullOrEmpty(log.IslemTip))
+                return BadRequest(new { Message = "İşlem Tipi alanı zorunludur." });
+
+            if (string.IsNullOrEmpty(log.Aciklama))
+                return BadRequest(new { Message = "Açıklama alanı zorunludur." });
+
+            var newLog = new Log
+            {
+                UserId = log.UserId,
+                UserMail = log.UserMail,  
+                Durum = log.Durum,
+                IslemTip = log.IslemTip,
+                Aciklama = log.Aciklama,
+                TarihSaat = DateTime.Now
+            };
+
+            _context.Logs.Add(newLog);
+            await _context.SaveChangesAsync();
+
+            return Ok(new { Message = "Log kaydı başarıyla eklendi." });
+        }
+
+
+
+    }
 }
