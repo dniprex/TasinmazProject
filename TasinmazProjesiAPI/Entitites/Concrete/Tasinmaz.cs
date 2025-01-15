@@ -17,5 +17,10 @@ namespace TasinmazProjesiAPI.Entitites.Concrete
 
         public string Ada { get; set; }
         public string KoordinatBilgisi { get; set; }
+
+        public int UserId { get; set; }
+
+        public User User { get; set; }
+
     }
 }

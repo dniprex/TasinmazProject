@@ -44,7 +44,7 @@ namespace TasinmazProjesiAPI.Controllers
         {
             var claims = new List<Claim>
     {
-        new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+        new Claim("id", user.Id.ToString()), // ID'yi 'id' olarak ekliyoruz
         new Claim(ClaimTypes.Email, user.Email),
         new Claim(ClaimTypes.Role, user.UserRole)
     };
@@ -71,6 +71,7 @@ namespace TasinmazProjesiAPI.Controllers
                 throw;
             }
         }
+
 
         [HttpDelete("users/{id}")]
         public async Task<IActionResult> DeleteUser(int id)
