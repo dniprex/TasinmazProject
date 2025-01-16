@@ -36,14 +36,19 @@ namespace TasinmazProjesiAPI.Controllers
             return Ok(mahalle);
         }
 
-        [HttpGet("by-ilce/{ilceId}")]
-        public async Task<ActionResult<IEnumerable<Mahalle>>> GetMahallelerByIlceId(int ilceId)
+        [HttpGet("by-ilce/{ilceId?}")]
+        public async Task<ActionResult<IEnumerable<Mahalle>>> GetMahallelerByIlceId(int? ilceId)
         {
-            var mahalleler = await _mahalleService.GetMahallelerByIlceIdAsync(ilceId);
+            if (!ilceId.HasValue)
+                return BadRequest(new { Message = "District ID is required." });
+
+            var mahalleler = await _mahalleService.GetMahallelerByIlceIdAsync(ilceId.Value);
             if (mahalleler == null || !mahalleler.Any())
                 return NotFound($"No neighborhoods found for district ID {ilceId}.");
+
             return Ok(mahalleler);
         }
+
 
         [HttpPost]
         public async Task<IActionResult> AddMahalle(Mahalle mahalle)

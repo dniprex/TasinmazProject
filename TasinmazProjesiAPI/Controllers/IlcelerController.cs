@@ -36,14 +36,19 @@ namespace TasinmazProjesiAPI.Controllers
             return Ok(ilce);
         }
 
-        [HttpGet("by-il/{ilId}")]
-        public async Task<ActionResult<IEnumerable<Ilce>>> GetIlcelerByIlId(int ilId)
+        [HttpGet("by-il/{ilId?}")]
+        public async Task<ActionResult<IEnumerable<Ilce>>> GetIlcelerByIlId(int? ilId)
         {
-            var ilceler = await _ilceService.GetIlcelerByIlIdAsync(ilId);
+            if (!ilId.HasValue)
+                return BadRequest(new { Message = "City ID is required." });
+
+            var ilceler = await _ilceService.GetIlcelerByIlIdAsync(ilId.Value);
             if (ilceler == null || !ilceler.Any())
                 return NotFound($"No districts found for city ID {ilId}.");
+
             return Ok(ilceler);
         }
+
 
         [HttpPost]
         public async Task<IActionResult> AddIlce(Ilce ilce)
