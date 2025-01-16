@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using TasinmazProjesiAPI.Business.Concrete;
 
 namespace TasinmazProjesiAPI.Controllers
 {
@@ -32,14 +33,15 @@ namespace TasinmazProjesiAPI.Controllers
             if (user == null)
                 return Unauthorized("Invalid credentials");
 
-            var hashedPassword = PasswordHelper.HashPassword(request.Password); 
-            if (user.Password != hashedPassword)
+            var hashedPassword = PasswordHelper.HashPassword(request.Password);
+            if (user.HashedPassword != hashedPassword)
                 return Unauthorized("Invalid credentials");
 
             var token = GenerateJwtToken(user);
 
             return Ok(new { Token = token });
         }
+
         private string GenerateJwtToken(User user)
         {
             var claims = new List<Claim>
@@ -110,7 +112,7 @@ namespace TasinmazProjesiAPI.Controllers
         public async Task<IActionResult> GetAllUsers()
         {
             var users = await _context.Users
-                .Select(u => new { u.Id, u.Email, u.Name, u.Surname, u.UserRole, u.Adres }) 
+                .Select(u => new { u.Id, u.Email, u.Name, u.Surname, u.UserRole, u.Adres })
                 .ToListAsync();
 
             return Ok(users);
@@ -134,45 +136,48 @@ namespace TasinmazProjesiAPI.Controllers
             if (_context.Users.Any(u => u.Email == request.Email))
                 return BadRequest("Email already exists");
 
+            var hashedPassword = PasswordHelper.HashPassword(request.Password);
+
             var user = new User
             {
                 Name = request.Name,
                 Surname = request.Surname,
                 Email = request.Email,
-                Password = request.Password,
+                Password = request.Password, 
                 UserRole = request.UserRole,
-                Adres = request.Adres
+                Adres = request.Adres,
+                HashedPassword = hashedPassword 
             };
 
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
             return Ok(new { message = "User registered successfully" });
-
         }
+
+
+    }
+    public class LoginRequest
+    {
+        public string Email { get; set; }
+        public string Password { get; set; }
     }
 
-}
-public class LoginRequest
-{
-    public string Email { get; set; }
-    public string Password { get; set; }
-}
-
-public class RegisterRequest
-{
-    public string Name { get; set; }
-    public string Surname { get; set; }
-    public string Email { get; set; }
-    public string Password { get; set; }
-    public string UserRole { get; set; }  
-    public string Adres { get; set; }     
-}
-public class UpdateUserRequest
-{
-    public string Name { get; set; }
-    public string Surname { get; set; }
-    public string Email { get; set; }
-    public string Password { get; set; }
-    public string UserRole { get; set; }
-    public string Adres { get; set; }
+    public class RegisterRequest
+    {
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
+        public string UserRole { get; set; }
+        public string Adres { get; set; }
+    }
+    public class UpdateUserRequest
+    {
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
+        public string UserRole { get; set; }
+        public string Adres { get; set; }
+    }
 }
