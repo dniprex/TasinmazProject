@@ -12,172 +12,139 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using TasinmazProjesiAPI.Business.Concrete;
-
+using TasinmazProjesiAPI.Business.Abstract;
+using TasinmazProjesiAPI.Dtos;
+using System.Security.Cryptography;
+using Microsoft.Extensions.Configuration;
 namespace TasinmazProjesiAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class AuthController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
 
-        public AuthController(ApplicationDbContext context)
+        private IAuthRepository _authRepository;
+        private ILogService _logService;
+
+        private IConfiguration _configuration;
+        public AuthController(IAuthRepository authRepository,
+                        IConfiguration configuration,
+                        ILogService logService)
         {
-            _context = context;
+            _authRepository = authRepository;
+            _configuration = configuration;
+            _logService = logService;
         }
-
-        [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody] LoginRequest request)
+        [HttpPost("register")]
+        public async Task<IActionResult> Register([FromBody] UserForRegisterDTO userForRegister)
         {
-            var user = await _context.Users.SingleOrDefaultAsync(u => u.Email == request.Email);
-            if (user == null)
-                return Unauthorized("Invalid credentials");
-
-            var hashedPassword = PasswordHelper.HashPassword(request.Password);
-            if (user.HashedPassword != hashedPassword)
-                return Unauthorized("Invalid credentials");
-
-            var token = GenerateJwtToken(user);
-
-            return Ok(new { Token = token });
-        }
-
-        private string GenerateJwtToken(User user)
-        {
-            var claims = new List<Claim>
-    {
-        new Claim("id", user.Id.ToString()), // ID'yi 'id' olarak ekliyoruz
-        new Claim(ClaimTypes.Email, user.Email),
-        new Claim(ClaimTypes.Role, user.UserRole)
-    };
-
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("MySuperSecretKey123"));
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-
-            var tokenDescriptor = new SecurityTokenDescriptor
-            {
-                Subject = new ClaimsIdentity(claims),
-                Expires = DateTime.UtcNow.AddHours(1),
-                SigningCredentials = creds
-            };
-
-            var tokenHandler = new JwtSecurityTokenHandler();
             try
             {
-                var token = tokenHandler.CreateToken(tokenDescriptor);
-                return tokenHandler.WriteToken(token);
+                var userToCreate = new User
+                {
+                    userEmail = userForRegister.UserEmail,
+                    UserRole = userForRegister.UserRole,
+                };
+
+                var createdUser = await _authRepository.Register(userToCreate, userForRegister.Password);
+                return StatusCode(201, new { message = "Kullanıcı başarıyla oluşturuldu." });
+            }
+            catch (UserAlreadyExistsException ex)
+            {
+                return BadRequest(new { message = ex.Message });
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Token Oluşturma Hatası: " + ex.Message);
-                throw;
+                Console.WriteLine($"Hata: {ex.Message}, Inner: {ex.InnerException?.Message}");
+                return StatusCode(500, $"Bir hata oluştu: {ex.Message}, Inner: {ex.InnerException?.Message}");
+            }
+
+
+        }
+        public class UserAlreadyExistsException : Exception
+        {
+            public UserAlreadyExistsException(string message) : base(message) { }
+        }
+
+        [HttpPost("login")]
+        public async Task<ActionResult> Login([FromBody] UserForLoginDTO userForLogin)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(userForLogin.email) || string.IsNullOrEmpty(userForLogin.password))
+                {
+                    return BadRequest(new { Message = "E-posta ve şifre boş olamaz." });
+                }
+
+                var user = await _authRepository.Login(userForLogin.email, userForLogin.password);
+
+                var key = Encoding.ASCII.GetBytes(_configuration["AppSettings:Token"]);
+                if (key == null || key.Length < 16)
+                {
+                    throw new Exception("AppSettings:Token geçersiz. Lütfen geçerli bir JWT anahtarı tanımlayın.");
+                }
+
+                var tokenHandler = new JwtSecurityTokenHandler();
+                var tokenDescriptor = new SecurityTokenDescriptor
+                {
+                    Subject = new ClaimsIdentity(new Claim[]
+                    {
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new Claim(ClaimTypes.Email, user.userEmail),
+                new Claim(ClaimTypes.Role, user.UserRole)
+                    }),
+                    Expires = DateTime.Now.AddDays(1),
+                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha512Signature)
+                };
+
+                var token = tokenHandler.CreateToken(tokenDescriptor);
+                var tokenString = tokenHandler.WriteToken(token);
+
+                return Ok(new { token = tokenString });
+            }
+            catch (UserNotFoundException ex)
+            {
+                Console.WriteLine($"Kullanıcı bulunamadı. Email: {userForLogin.email}, Hata: {ex.Message}");
+                return NotFound(new { Message = "Kullanıcı bulunamadı." });
+            }
+            catch (InvalidPasswordException ex)
+            {
+                Console.WriteLine($"Geçersiz şifre denemesi. Email: {userForLogin.email}, Hata: {ex.Message}");
+                return BadRequest(new { Message = "Geçersiz şifre." });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Bilinmeyen bir hata oluştu: {ex.Message}, Inner: {ex.InnerException?.Message}");
+                return StatusCode(500, "Sunucu tarafında bir hata oluştu.");
             }
         }
 
-
-        [HttpDelete("users/{id}")]
-        public async Task<IActionResult> DeleteUser(int id)
+        public class UserNotFoundException : Exception
         {
-            var user = await _context.Users.FindAsync(id);
-            if (user == null)
+            public UserNotFoundException(string message) : base(message) { }
+        }
+
+        public class InvalidPasswordException : Exception
+        {
+            public InvalidPasswordException(string message) : base(message) { }
+        }
+
+        private bool VerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
+        {
+            using (var hmac = new System.Security.Cryptography.HMACSHA512(passwordSalt))
             {
-                return NotFound("Kullanıcı bulunamadı.");
+                var computedHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+                for (int i = 0; i < computedHash.Length; i++)
+                {
+                    if (computedHash[i] != passwordHash[i])
+                    {
+                        return false;
+                    }
+
+                }
+                return true;
+
             }
-
-            _context.Users.Remove(user);
-            await _context.SaveChangesAsync();
-            return NoContent();
         }
-        [HttpPatch("users/{id}")]
-        public async Task<IActionResult> UpdateUser(int id, [FromBody] UpdateUserRequest request)
-        {
-            var user = await _context.Users.FindAsync(id);
-            if (user == null)
-            {
-                return NotFound("Kullanıcı bulunamadı.");
-            }
-
-            if (!string.IsNullOrEmpty(request.Name)) user.Name = request.Name;
-            if (!string.IsNullOrEmpty(request.Surname)) user.Surname = request.Surname;
-            if (!string.IsNullOrEmpty(request.Email)) user.Email = request.Email;
-            if (!string.IsNullOrEmpty(request.Password)) user.Password = request.Password;
-            if (!string.IsNullOrEmpty(request.UserRole)) user.UserRole = request.UserRole;
-            if (!string.IsNullOrEmpty(request.Adres)) user.Adres = request.Adres;
-
-            await _context.SaveChangesAsync();
-            return Ok("Kullanıcı başarıyla güncellendi.");
-        }
-
-        [HttpGet("users")]
-        public async Task<IActionResult> GetAllUsers()
-        {
-            var users = await _context.Users
-                .Select(u => new { u.Id, u.Email, u.Name, u.Surname, u.UserRole, u.Adres })
-                .ToListAsync();
-
-            return Ok(users);
-        }
-
-        [HttpGet("{id}")]
-        public IActionResult GetUserById(int id)
-        {
-            var user = _context.Users.FirstOrDefault(u => u.Id == id);
-            if (user == null)
-            {
-                return NotFound();
-            }
-            return Ok(user);
-        }
-
-
-        [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody] RegisterRequest request)
-        {
-            if (_context.Users.Any(u => u.Email == request.Email))
-                return BadRequest("Email already exists");
-
-            var hashedPassword = PasswordHelper.HashPassword(request.Password);
-
-            var user = new User
-            {
-                Name = request.Name,
-                Surname = request.Surname,
-                Email = request.Email,
-                Password = request.Password, 
-                UserRole = request.UserRole,
-                Adres = request.Adres,
-                HashedPassword = hashedPassword 
-            };
-
-            _context.Users.Add(user);
-            await _context.SaveChangesAsync();
-            return Ok(new { message = "User registered successfully" });
-        }
-
-
-    }
-    public class LoginRequest
-    {
-        public string Email { get; set; }
-        public string Password { get; set; }
-    }
-
-    public class RegisterRequest
-    {
-        public string Name { get; set; }
-        public string Surname { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public string UserRole { get; set; }
-        public string Adres { get; set; }
-    }
-    public class UpdateUserRequest
-    {
-        public string Name { get; set; }
-        public string Surname { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public string UserRole { get; set; }
-        public string Adres { get; set; }
     }
 }

@@ -3,12 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TasinmazProjesiAPI.Business.Abstract;
 using TasinmazProjesiAPI.DataAccess;
 using TasinmazProjesiAPI.Entitites.Concrete;
 
 namespace TasinmazProjesiAPI.Business.Concrete
 {
-    public class LogService
+    public class LogService : ILogService
     {
         private readonly ApplicationDbContext _context;
 
@@ -17,6 +18,7 @@ namespace TasinmazProjesiAPI.Business.Concrete
             _context = context;
         }
 
+        // Logları filtreli veya filtresiz getirir
         public async Task<List<Log>> GetLogsAsync(bool? durum)
         {
             var query = _context.Logs.AsQueryable();
@@ -27,51 +29,58 @@ namespace TasinmazProjesiAPI.Business.Concrete
             }
 
             return await query
-                .OrderByDescending(l => l.TarihSaat) 
+                .OrderByDescending(l => l.TarihSaat) // Logları en son tarihliden başlayarak sırala
                 .ToListAsync();
         }
 
+        // Yeni bir log kaydı ekler
         public async Task<Log> AddLogAsync(bool durum, string islemTip, string aciklama, string userMail, int? userId)
         {
+            var log = new Log
+            {
+                Durum = durum.ToString(),
+                IslemTip = islemTip,
+                Aciklama = aciklama,
+                UserMail = userMail,
+                UserId = userId ?? 0,
+                TarihSaat = DateTime.Now
+            };
+
             try
             {
-                var log = new Log
-                {
-                    Durum = durum.ToString(),
-                    IslemTip = islemTip,
-                    Aciklama = aciklama,
-                    UserMail = userMail,
-                    UserId = userId ?? 0,
-                    TarihSaat = DateTime.Now
-                };
-
                 await _context.Logs.AddAsync(log);
                 await _context.SaveChangesAsync();
                 return log;
             }
             catch (Exception ex)
             {
-                var errorLog = new Log
-                {
-                    Durum = "false",
-                    IslemTip = "Error",
-                    Aciklama = $"Log kaydedilirken hata oluştu: {ex.Message}",
-                    UserMail = userMail,
-                    UserId = userId ?? 0,
-                    TarihSaat = DateTime.Now
-                };
+                // Log kaydedilirken hata oluşursa hata detayını ayrı bir log olarak kaydet
+                await HandleLogErrorAsync(ex, userMail, userId);
+                throw; // Hatanın yukarıya taşınmasına izin ver
+            }
+        }
 
-                try
-                {
-                    await _context.Logs.AddAsync(errorLog);
-                    await _context.SaveChangesAsync();
-                }
-                catch
-                {
-                    Console.WriteLine($"Log kaydedilirken kritik hata oluştu: {ex.Message}");
-                }
+        // Hata logunu kaydet
+        private async Task HandleLogErrorAsync(Exception ex, string userMail, int? userId)
+        {
+            var errorLog = new Log
+            {
+                Durum = "false",
+                IslemTip = "Error",
+                Aciklama = $"Log kaydedilirken hata oluştu: {ex.Message}",
+                UserMail = userMail,
+                UserId = userId ?? 0,
+                TarihSaat = DateTime.Now
+            };
 
-                throw; //hata fırlatıyor ?
+            try
+            {
+                await _context.Logs.AddAsync(errorLog);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception innerEx)
+            {
+                Console.WriteLine($"Kritik hata: Hata logu kaydedilemedi. {innerEx.Message}");
             }
         }
     }

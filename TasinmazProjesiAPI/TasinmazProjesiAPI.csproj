@@ -1,8 +1,15 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20250118202131_UpdateUserTable.cs" />
+    <Compile Remove="Migrations\20250118202131_UpdateUserTable.Designer.cs" />
+    <Compile Remove="Migrations\20250118202252_UpdateUserTable.cs" />
+    <Compile Remove="Migrations\20250118202252_UpdateUserTable.Designer.cs" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="7.0.1" />
@@ -20,7 +27,6 @@
 
   <ItemGroup>
     <Folder Include="Entitites\Abstract\" />
-    <Folder Include="Migrations\" />
   </ItemGroup>
 
 

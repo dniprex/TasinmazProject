@@ -1,18 +1,17 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace TasinmazProjesiAPI.Entitites.Concrete
 {
     public class User
     {
+        [Key]
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string Surname { get; set; }
-        public string Email { get; set; } 
-        public string Password { get; set; }
-        public string HashedPassword { get; set; }
+        public string userEmail { get; set; }
+        public byte[] PasswordHash { get; set; }
+        public byte[] PasswordSalt { get; set; }
         public string UserRole { get; set; }
-        public string Adres {  get; set; }
     }
 }
