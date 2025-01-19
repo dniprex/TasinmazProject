@@ -38,15 +38,19 @@ namespace TasinmazProjesiAPI.Controllers
 
             return Ok(logs);
         }
-
         [HttpPost]
         public async Task<IActionResult> AddLog([FromBody] LogDto log)
         {
+            Console.WriteLine($"Gelen Log Verisi: {System.Text.Json.JsonSerializer.Serialize(log)}");
+
             if (log == null)
                 return BadRequest(new { Message = "Log verisi boş olamaz." });
 
             if (log.UserId <= 0)
                 return BadRequest(new { Message = "Geçerli bir UserId sağlanmalıdır." });
+
+            if (string.IsNullOrEmpty(log.UserMail))
+                return BadRequest(new { Message = "UserMail alanı zorunludur." });
 
             if (string.IsNullOrEmpty(log.Durum))
                 return BadRequest(new { Message = "Durum alanı zorunludur." });
@@ -60,20 +64,35 @@ namespace TasinmazProjesiAPI.Controllers
             var newLog = new Log
             {
                 UserId = log.UserId,
-                UserMail = log.UserMail,  
+                UserMail = log.UserMail,
                 Durum = log.Durum,
                 IslemTip = log.IslemTip,
                 Aciklama = log.Aciklama,
                 TarihSaat = DateTime.Now
             };
 
-            _context.Logs.Add(newLog);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.Logs.Add(newLog);
+                await _context.SaveChangesAsync();
+                return Ok(new { Message = "Log kaydı başarıyla eklendi." });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Hata: {ex.Message}");
+                if (ex.InnerException != null)
+                {
+                    Console.WriteLine($"İç Hata: {ex.InnerException.Message}");
+                }
 
-            return Ok(new { Message = "Log kaydı başarıyla eklendi." });
+                return StatusCode(500, new
+                {
+                    Message = "Log kaydedilirken hata oluştu.",
+                    Detail = ex.Message,
+                    InnerException = ex.InnerException?.Message
+                });
+            }
         }
-
-
 
     }
 }

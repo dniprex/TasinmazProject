@@ -22,6 +22,14 @@ namespace TasinmazProjesiAPI.DataAccess
             modelBuilder.Entity<Mahalle>().ToTable("mahalleler");
             modelBuilder.Entity<User>().ToTable("Users");
             modelBuilder.Entity<Log>().ToTable("Logs");
+          //  base.OnModelCreating(modelBuilder);
+
+        //    modelBuilder.Entity<Log>()
+        //.HasOne(l => l.User)           // Log tablosu, User ile ilişkilendiriliyor
+        //.WithMany()                    // Bir kullanıcı birden fazla log kaydına sahip olabilir
+        //.HasForeignKey(l => l.UserId)  // Foreign Key: UserId
+        //.OnDelete(DeleteBehavior.SetNull); // Kullanıcı silinirse, UserId alanını null yap
+
         }
 
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

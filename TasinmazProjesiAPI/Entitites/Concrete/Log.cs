@@ -11,8 +11,9 @@ namespace TasinmazProjesiAPI.Entitites.Concrete
         public string IslemTip { get; set; }
         public string Aciklama { get; set; }
         public DateTime TarihSaat { get; set; }
-       
-        [ForeignKey("UserID")]
-        public int UserId { get; set; }
+
+        public int? UserId { get; set; }
+
+        public User User { get; set; }
     }
 }

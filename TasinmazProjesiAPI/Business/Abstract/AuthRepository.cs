@@ -10,6 +10,7 @@ namespace TasinmazProjesiAPI.Business.Abstract
     public class AuthRepository : IAuthRepository
     {
         private readonly ApplicationDbContext _context;
+
         public AuthRepository(ApplicationDbContext context)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
@@ -87,14 +88,15 @@ namespace TasinmazProjesiAPI.Business.Abstract
 
         public async Task<bool> UserExists(string userEmail)
         {
-            Console.WriteLine($"Checking if user exists: {userEmail}");
+            var normalizedEmail = userEmail.Trim().ToLower();
+            Console.WriteLine($"Checking user existence: {normalizedEmail}");
+
             var exists = await _context.Users
-                .AnyAsync(x => x.userEmail.ToLower() == userEmail.ToLower());
-            Console.WriteLine($"User exists result: {exists}");
+                .AnyAsync(x => x.userEmail.ToLower() == normalizedEmail);
+
+            Console.WriteLine($"User exists: {exists}");
             return exists;
         }
-
-
 
 
     }
